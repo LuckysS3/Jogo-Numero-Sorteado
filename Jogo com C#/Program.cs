@@ -1,46 +1,70 @@
-﻿
-static void SortearNumero(List<int> listNumerosSorteado)
+﻿static void Jogo()
 {
-    Random random = new();
+    //Parte do numero sorteado
+    List<int> listNumerosSorteado = [];
 
+    int numeroSorteado = SortearNumero();
 
-    int numeroAleatorio = random.Next(1, 11);
-
-
-    if (listNumerosSorteado.Contains(numeroAleatorio))
+    if (listNumerosSorteado.Contains(numeroSorteado))
     {
-        SortearNumero(listNumerosSorteado);
+        SortearNumero();
     }
     else
     {
-        listNumerosSorteado.Add(numeroAleatorio);
+        listNumerosSorteado.Add(numeroSorteado);
+        Console.WriteLine("Lista de numero sorteado");
+        foreach (int numero in listNumerosSorteado)
+        {
+            Console.WriteLine(numero);
+        }
     }
 
-    if(listNumerosSorteado.Count == 8)
+    if (listNumerosSorteado.Count == 8)
     {
         listNumerosSorteado.Clear();
     }
 
-    Console.WriteLine("Número aleatório gerado: " + numeroAleatorio);
+    //Parte do jogo
+    string acertou = "nao";
+    int tentativa = 0;
 
-    Console.WriteLine("Repeti");
-    string sim = Console.ReadLine()!;
-    Console.WriteLine($"A lista dos numero sorteado");
-    foreach (int numero in listNumerosSorteado)
+    while (acertou != "sim")
     {
-        Console.WriteLine(numero);
-    }
+        Console.WriteLine("O numero foi sorteado");
+        Console.Write("Chute um numero ");
+        string numeroChutado = Console.ReadLine()!;
+        int numeroChutadoInt = int.Parse(numeroChutado);
 
-    if (sim == "s")
-    {
-        SortearNumero(listNumerosSorteado);
+        if (numeroChutadoInt > numeroSorteado)
+        {
+            Console.WriteLine("Numero chutado e maior");
+            tentativa++;
+        }
+        else if (numeroChutadoInt < numeroSorteado)
+        {
+            Console.WriteLine("Numero chutado e menor");
+            tentativa++;
+        }
+        else
+        {
+            Console.WriteLine($"Parabens voce acertou o numero que era {numeroSorteado}");
+            acertou = "sim";
+        }
     }
+}
+
+static int SortearNumero()
+{
+    Random random = new();
+
+    int numeroAleatorio = random.Next(1, 11);
+
+    return (numeroAleatorio);
+
 }
 
 static void Menu()
 {
-    List<int> listNumerosSorteado = [];
-
     Console.WriteLine("Jogo de adivinhar \n");
     Console.WriteLine("Digite 1 para iniciar o jogo");
     Console.WriteLine("Digite 2 para ver o placar do top 10 melhores ");
@@ -52,13 +76,17 @@ static void Menu()
     switch (escolhar)
     {
         case "1":
-            SortearNumero(listNumerosSorteado);
+            Console.WriteLine("Seja Bem-Vindo ao jogo do sorteio");
+            Jogo();
             break;
-        case "2": Console.WriteLine("Placar");
+        case "2":
+            Console.WriteLine("Placar");
             break;
-        case "3": Console.WriteLine("Tchau");
+        case "3":
+            Console.WriteLine("Tchau");
             break;
-        default: Console.WriteLine("Opçao errada ");
+        default:
+            Console.WriteLine("Opçao errada ");
             break;
     }
 
