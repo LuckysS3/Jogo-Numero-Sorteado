@@ -1,6 +1,5 @@
 ﻿static void Jogo()
 {
-
     //Parte do numero sorteado
     List<int> listNumerosSorteado = [];
 
