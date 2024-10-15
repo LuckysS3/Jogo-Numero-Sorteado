@@ -12,11 +12,6 @@
     else
     {
         listNumerosSorteado.Add(numeroSorteado);
-        Console.WriteLine("Lista de numero sorteado");
-        foreach (int numero in listNumerosSorteado)
-        {
-            Console.WriteLine(numero);
-        }
     }
 
     if (listNumerosSorteado.Count == 8)
@@ -27,6 +22,8 @@
     //Parte do jogo
     string acertou = "nao";
     int tentativa = 0;
+
+    Console.WriteLine($"O numero e {numeroSorteado}");
 
     while (acertou != "sim")
     {
@@ -50,6 +47,21 @@
             Console.WriteLine($"Parabens voce acertou o numero que era {numeroSorteado}");
             acertou = "sim";
         }
+    }
+
+    Console.WriteLine("\n \nVoce quer jogar de novo? ");
+    Console.WriteLine("Digite 1 para jogar de novo");
+    Console.WriteLine("Digite 2 para sair");
+    string resposta = Console.ReadLine()!;
+   
+    if (resposta == "1" )
+    {
+        Console.WriteLine("De novo entao \n \n");
+        Jogo();
+    }
+    else
+    {
+        Console.WriteLine("Tchau entao");
     }
 }
 
@@ -76,7 +88,7 @@ static void Menu()
     switch (escolhar)
     {
         case "1":
-            Console.WriteLine("Seja Bem-Vindo ao jogo do sorteio");
+            Console.WriteLine("\n \nSeja Bem-Vindo ao jogo do sorteio");
             Jogo();
             break;
         case "2":
